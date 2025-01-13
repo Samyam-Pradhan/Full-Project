@@ -1,0 +1,55 @@
+p,li,a,button{
+    font-size: 1.7rem;
+    letter-spacing: .1rem;
+  }
+  li{
+    list-style: none;
+  }
+  a{
+    color: #000;
+    text-decoration: none;
+    &:hover{
+        color: black;
+        text-decoration: underline;
+    }
+    
+  }
+  #SignUp {
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  #SignUp:hover{
+    border: 1px solid black; 
+    border-radius: 5px;/* Darker orange on hover */
+  }
+  
+  header{
+    height: 10rem;
+    width: 100%;
+    
+  }
+  
+  .container{
+    max-width: 132rem;
+    margin: auto;
+    height: 10rem;
+  }
+  
+  .grid{
+    display: grid;
+  }
+  
+  .navbar-grid{
+    grid-template-columns: .5fr 1fr;
+    align-items: center;
+    height: 10rem;
+    padding: 0 3.2rem;
+  }
+  
+  nav ul{
+    display: flex;
+    justify-content: flex-end;
+    gap: 3.2rem;
+  }
