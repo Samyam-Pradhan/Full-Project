@@ -1,8 +1,8 @@
-import { Navbar } from '../components/Navbar';  // Ensure path is correct
-import { Hero } from '../components/Hero';      // Ensure path is correct
-import { Feature } from '../components/Feature';// Ensure path is correct
-import { Team } from '../components/Team';      // Ensure path is correct
-import { Footer } from '../components/Footer';  // Ensure path is correct
+import { Navbar } from '../components/Navbar';  
+import { Hero } from '../components/Hero';      
+import { Feature } from '../components/Feature';
+import { Team } from '../components/Team';      
+import { Footer } from '../components/Footer';  
 
 const HomePage = () => {
   return (
