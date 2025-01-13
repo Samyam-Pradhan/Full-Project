@@ -1,4 +1,4 @@
-/* Overall page layout */
+
 .sign-up-page {
     display: flex;
     justify-content: center;
@@ -88,11 +88,9 @@
     margin-top: 1.5rem;
   }
   
-  .link {
-    font-size: 0.875rem;
-    color: #4A4A4A;
-    text-decoration: none;
-  }
+ .sign-up-link .link{
+  font-size: 1.5rem;
+ }
   
   .link:hover {
     text-decoration: underline;

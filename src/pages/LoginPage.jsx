@@ -36,7 +36,7 @@ const LoginPage = () => {
       {/* Right Section */}
       <div className="right-section">
         <div className="form-container">
-          <h2 className="header">Welcome back!</h2>
+          <h2>Welcome back!</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-container">
               <label htmlFor="email" className="label">Email address</label>
