@@ -12,10 +12,6 @@ const sigupSchema = z.object({
     .min(3, {message:"Name must be atleast 3 characters"})
     .email({message: "Invalid email address"})
     .max(255,{message:"Name must not be more than 255 characters"}),
-    phone: z.string({required_error:"Phone is required"})
-    .trim()
-    .min(10, {message:"Phone no  must be atleast 10 characters"})
-    .max(20,{message:"Name must not be more than 20 characters"}),
     password: z.string({required_error:"Password is required"})
     .trim()
     .min(3, {message:"Name must be atleast 3 characters"})

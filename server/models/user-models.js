@@ -10,10 +10,6 @@ const userSchema = new mongoose.Schema({
         type:String,
         require:true,
     },
-    phone:{
-        type:String,
-        require:true,
-    },
     password:{
         type:String,
         require:true,
@@ -37,7 +33,7 @@ userSchema.methods.comparePassword = async function(password) {
             email:this.email,
             isAdmin: this.isAdmin,
         },
-        process.env.JWT_SECRET_KEY,
+        "SAMYAMPRADHANPROJECT",
         {
             expiresIn : "30d",
         }
