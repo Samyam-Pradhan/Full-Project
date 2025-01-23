@@ -1,6 +1,6 @@
 import React from "react";
-import CameraApp from "./Camera";
-import Sidebar from "./Sidebar";
+import CameraApp from "../components/Camera.jsx";
+import Sidebar from "../components/Sidebar.jsx";
 
 //adding the dashboard
 function Dashboard() {

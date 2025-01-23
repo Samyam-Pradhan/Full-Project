@@ -1,7 +1,6 @@
-import registerImage from '../images/register-image.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../components/Register.css";
+import "../assets/Register.css";
 
 const Register = () => {
     const [user, setUser] = useState({
@@ -37,7 +36,6 @@ const navigate = useNavigate();
                 setUser({
                     username: "",
                     email: "",
-
                     password: "",
                 })
                 navigate("/login");
@@ -53,15 +51,7 @@ const navigate = useNavigate();
             <section>
                 <main>
                     <div className="section-registration">
-                        <div className="container grid grid-two-cols">
-                            <div className="registration-image">
-                                <img
-                                    src={registerImage}
-                                    alt="register"
-                                    width="500"
-                                    height="500"
-                                />
-                            </div>
+                        
                             <div className="register-form">
                                 <h1 className="main-heading mb-3">Registration Form</h1>
                                 <form onSubmit={handleSubmit}>
@@ -92,19 +82,6 @@ const navigate = useNavigate();
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="phone">Phone</label>
-                                        <input
-                                            type="text"
-                                            name="phone"
-                                            placeholder="phone"
-                                            id="phone"
-                                            required
-                                            autoComplete="off"
-                                            value={user.phone}
-                                            onChange={handleInput}
-                                        />
-                                    </div>
-                                    <div>
                                         <label htmlFor="password">Password</label>
                                         <input
                                             type="password"
@@ -121,7 +98,7 @@ const navigate = useNavigate();
                                         Register now
                                     </button>
                                 </form>
-                            </div>
+                           
                         </div>
                     </div>
                 </main>

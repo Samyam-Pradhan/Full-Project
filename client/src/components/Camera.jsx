@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
-import "./assets/Camera.css";
+import "../assets/Camera.css";
 
 const CameraApp = () => {
   const videoRef = useRef(null);

@@ -35,7 +35,7 @@ const Login = () => {
             if (response.ok) {
                 setUser({ email: "", password: "" });
                 alert("Login successful");
-                navigate("/");
+                navigate("/Dashboard");
             } else {
                 alert("Invalid credentials");
                 console.log("Invalid credentials");

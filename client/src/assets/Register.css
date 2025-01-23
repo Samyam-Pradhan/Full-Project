@@ -1,86 +1,47 @@
 /* Register.css */
 
-/* General Styling for the Section */
 .section-registration {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f4f4f9;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  width: 80%;
-  max-width: 1200px;
-}
-
-.registration-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
+  margin: 20px;
 }
 
 .register-form {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.register-form h1 {
-  font-size: 2rem;
+.main-heading {
   color: #333;
+  font-size: 24px;
   margin-bottom: 20px;
-  text-align: center;
 }
 
-.register-form div {
-  margin-bottom: 15px;
-}
-
-.register-form label {
+label {
   display: block;
-  font-size: 1rem;
-  color: #333;
   margin-bottom: 5px;
-}
-
-.register-form input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   font-size: 1rem;
-  outline: none;
 }
 
-.register-form input:focus {
-  border-color: #0056b3;
-  box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
-}
-
-.btn-submit {
+input {
   width: 100%;
-  padding: 12px;
-  background-color: #0056b3;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #007bff;
   color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  font-size: 1.2rem;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 1rem;
 }
 
-.btn-submit:hover {
-  background-color: #00408b;
-}
-
-@media (max-width: 768px) {
-  .container {
-      grid-template-columns: 1fr;
-  }
+button:hover {
+  background-color: #0056b3;
 }
