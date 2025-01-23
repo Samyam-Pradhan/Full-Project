@@ -1,0 +1,124 @@
+.login-page {
+    display: flex;
+    height: 100vh;
+    background-color: white;
+  }
+  
+  .left-section {
+    width: 50%;
+    background-image: url('../images/facemask1.webp');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .right-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: auto;
+  }
+  
+  .form-container {
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    line-height: 2.5;
+  }
+  
+  .form-container h2 {
+    font-size: 3rem;
+    color: #4A4A4A;
+  }
+  
+  .input-container {
+    margin-bottom: 1rem;
+  }
+  
+  .input-container .label {
+    font-size: 2rem; /* Increased to 2rem */
+    font-weight: 500;
+    color: #4A4A4A;
+    margin: 0.5rem 0;
+  }
+  
+  .input {
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    outline: none;
+  }
+  
+  .input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+  
+  .show-password {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .show-password .show-password-label {
+    font-size: 1.5rem; /* Adjusted to 2rem */
+    color: #4A4A4A;
+  }
+  
+  
+  .checkbox {
+    margin-right: 0.5rem;
+  }
+  
+  .forgot-password {
+    margin-top: 1rem;
+  }
+  
+  .forgot-password .label {
+    font-size: 1.5rem; /* Adjusted to 2rem */
+  }
+  
+  .forgot-password-link {
+    font-size: 1.5rem; /* Adjusted to 2rem */
+    color: #3b82f6;
+    text-decoration: none;
+  }
+  
+  .forgot-password-link:hover {
+    text-decoration: underline;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 2rem; /* Adjusted to 2rem */
+  }
+  
+  .submit-button:hover {
+    background-color: #2563eb;
+  }
+  
+  .sign-up {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .sign-up-link {
+    font-size: 1.5rem; /* Adjusted to 2rem */
+    color: #4A4A4A;
+    text-decoration: none;
+  }
+  
+  .sign-up-link:hover {
+    text-decoration: underline;
+  }
+  

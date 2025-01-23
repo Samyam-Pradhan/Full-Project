@@ -1,0 +1,98 @@
+
+.sign-up-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f4f6;
+  }
+  
+  .form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Header */
+  .header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4A4A4A;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Input containers */
+  .input-container {
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4A4A4A;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    margin-top: 0.5rem;
+    outline: none;
+  }
+  
+  .input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+  
+  /* Show Password Section */
+  .show-password {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox {
+    margin-right: 0.5rem;
+  }
+  
+  .show-password-label {
+    font-size: 0.875rem;
+    color: #4A4A4A;
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1.5rem;
+  }
+  
+  .submit-button:hover {
+    background-color: #2563eb;
+  }
+  
+  /* Sign-up Link */
+  .sign-up-link {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  
+ .sign-up-link .link{
+  font-size: 1.5rem;
+ }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
