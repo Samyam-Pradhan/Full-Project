@@ -6,7 +6,7 @@ export const Navbar = () =>{
             <div className="container">
                 <div className="grid navbar-grid">
                     <div className="logo">
-                    <h2>Face Mask</h2>dfsd
+                    <h2>Face Mask</h2>
                     </div>
                     <nav>
                         <ul>

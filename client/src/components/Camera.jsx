@@ -152,7 +152,7 @@ const CameraApp = () => {
   }, [detectionResults]);
 
   return (
-    <div>
+    <div className="main-camera">
       <div className="camera-container">
         <video ref={videoRef} autoPlay className="camera-video"></video>
         <canvas

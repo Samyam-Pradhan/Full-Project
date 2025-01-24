@@ -1,7 +1,7 @@
 /* Camera.css */
 
-/* Scope styles only to elements inside .camera-page */
-.camera-page {
+/* General styles */
+.main-camera {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -10,7 +10,7 @@
 }
 
 /* Container for the camera and controls */
-.camera-page .camera-container {
+.camera-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +21,7 @@
 }
 
 /* Video element */
-.camera-page .camera-video {
+.camera-video {
   width: 100%;
   max-width: 600px;
   border-radius: 8px;
@@ -30,7 +30,7 @@
 }
 
 /* Canvas overlay */
-.camera-page .camera-canvas {
+.camera-canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -39,12 +39,12 @@
 }
 
 /* Control buttons */
-.camera-page .controls {
+.controls {
   margin-top: 10px;
 }
 
-.camera-page .btn-start,
-.camera-page .btn-stop {
+.btn-start,
+.btn-stop {
   display: inline-block;
   background-color: #007bff;
   color: #fff;
@@ -58,21 +58,21 @@
   margin: 5px;
 }
 
-.camera-page .btn-start:hover,
-.camera-page .btn-stop:hover {
+.btn-start:hover,
+.btn-stop:hover {
   background-color: #0056b3;
 }
 
-.camera-page .btn-stop {
+.btn-stop {
   background-color: #dc3545;
 }
 
-.camera-page .btn-stop:hover {
+.btn-stop:hover {
   background-color: #a71d2a;
 }
 
 /* Detection results */
-.camera-page .results {
+.results {
   margin-top: 20px;
   width: 100%;
   max-width: 600px;
@@ -83,13 +83,13 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.camera-page .results h3 {
+.results h3 {
   margin-bottom: 10px;
   font-size: 20px;
   color: #007bff;
 }
 
-.camera-page .result-item {
+.result-item {
   margin-bottom: 15px;
   padding: 10px;
   background-color: #f9f9f9;
@@ -97,11 +97,11 @@
   border-radius: 4px;
 }
 
-.camera-page .result-item p {
+.result-item p {
   margin: 5px 0;
   font-size: 14px;
 }
 
-.camera-page .result-item strong {
+.result-item strong {
   color: #333;
 }

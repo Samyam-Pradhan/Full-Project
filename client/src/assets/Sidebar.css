@@ -1,5 +1,5 @@
-/* Scoped Sidebar styles */
-.sidebar-page .sidebar {
+/* Sidebar container styles */
+.sidebar {
   position: fixed;
   left: 0;
   top: 0;
@@ -10,7 +10,7 @@
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar-page .sidebar .logo {
+.sidebar .logo {
   font-size: 20px;
   font-weight: bold;
   text-align: center;
@@ -19,38 +19,38 @@
   color: white;
 }
 
-.sidebar-page .sidebar .menu {
+.sidebar .menu {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.sidebar-page .sidebar .menu li {
+.sidebar .menu li {
   padding: 15px 20px;
   font-size: 16px;
   cursor: pointer;
   white-space: nowrap;
 }
 
-.sidebar-page .sidebar .menu li:hover {
+.sidebar .menu li:hover {
   background-color: #e0e0e0;
 }
 
-.sidebar-page .sidebar hr {
+.sidebar hr {
   border: none;
   border-top: 1px solid #ccc;
   margin: 10px 0;
 }
 
 /* Dark mode toggle */
-.sidebar-page .dark-mode-toggle {
+.dark-mode-toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 15px 20px;
 }
 
-.sidebar-page .toggle-switch {
+.toggle-switch {
   width: 40px;
   height: 20px;
   background-color: #ccc;
@@ -60,11 +60,11 @@
   transition: background-color 0.3s;
 }
 
-.sidebar-page .toggle-switch.active {
+.toggle-switch.active {
   background-color: #007bff;
 }
 
-.sidebar-page .toggle-switch .switch-handle {
+.toggle-switch .switch-handle {
   width: 18px;
   height: 18px;
   background-color: white;
@@ -75,20 +75,20 @@
   transition: left 0.3s;
 }
 
-.sidebar-page .toggle-switch.active .switch-handle {
+.toggle-switch.active .switch-handle {
   left: 21px;
 }
 
 /* Dark mode styles */
-body.sidebar-page.dark-mode {
+body.dark-mode {
   background-color: #121212;
   color: white;
 }
 
-body.sidebar-page.dark-mode .sidebar {
+body.dark-mode .sidebar {
   background-color: #1e1e1e;
 }
 
-body.sidebar-page.dark-mode .sidebar .menu li:hover {
+body.dark-mode .sidebar .menu li:hover {
   background-color: #333;
 }
