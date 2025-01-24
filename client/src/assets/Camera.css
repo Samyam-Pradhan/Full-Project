@@ -1,99 +1,107 @@
-/* General Styles */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f7fafc;
-    color: #2d3748;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  /* Container for centering the content */
-  .camera-container {
-    display: flex;
-    justify-content: center; /* Move content to the right */
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding-right: 20px;
-    margin-left: 230px; /* Add some padding to the right side */
-  }
-  
-  /* Main content container */
-  .camera-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 16px 16px 16px 16px;
-    background-color: white;
-    border-radius: 8px;
-   
-  }
-  
-  /* Video container */
-  .video-container {
-    position: relative;
-    
-  }
-  
-  /* Decreased video size */
-  .video {
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 480px; /* Decreased width */
-    height: 360px; /* Decreased height */
-    border: 1px solid black;
-    
-  }
-  
-  /* Buttons container */
-  .buttons-container {
-    display: flex;
-    margin-top: 16px;
-    margin-right: 250px;
-    gap: 16px;
-  }
-  
-  .button {
-    padding: 12px 24px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: white;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.2s;
-  }
-  
-  /* Specific button colors */
-  .button-green {
-    background-color: #48bb78;
-  }
-  
-  .button-green:hover {
-    background-color: #38a169;
-  }
-  
-  .button-red {
-    background-color: #e53e3e;
-  }
-  
-  .button-red:hover {
-    background-color: #c53030;
-  }
-  
-  .button-blue {
-    background-color: #3182ce;
-  }
-  
-  .button-blue:hover {
-    background-color: #2b6cb0;
-  }
-  
-  /* Hide the file input */
-  .hidden {
-    display: none;
-  }
-  
+/* Camera.css */
+
+/* Scope styles only to elements inside .camera-page */
+.camera-page {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Container for the camera and controls */
+.camera-page .camera-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Video element */
+.camera-page .camera-video {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+/* Canvas overlay */
+.camera-page .camera-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  border-radius: 8px;
+}
+
+/* Control buttons */
+.camera-page .controls {
+  margin-top: 10px;
+}
+
+.camera-page .btn-start,
+.camera-page .btn-stop {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+}
+
+.camera-page .btn-start:hover,
+.camera-page .btn-stop:hover {
+  background-color: #0056b3;
+}
+
+.camera-page .btn-stop {
+  background-color: #dc3545;
+}
+
+.camera-page .btn-stop:hover {
+  background-color: #a71d2a;
+}
+
+/* Detection results */
+.camera-page .results {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.camera-page .results h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #007bff;
+}
+
+.camera-page .result-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.camera-page .result-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.camera-page .result-item strong {
+  color: #333;
+}

@@ -1,13 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
-import axios from "axios";
+import axios from "axios"; // Ensure axios is imported for making HTTP requests
 import "../assets/Camera.css";
 
 const CameraApp = () => {
   const videoRef = useRef(null);
-  const canvasRef = useRef(null);
+  const canvasRef = useRef(null); // Reference for the canvas
   const [isCameraOn, setIsCameraOn] = useState(false);
-  const [detectionResults, setDetectionResults] = useState([]);
+  const [detectionResults, setDetectionResults] = useState(null);
 
+  // Start the camera
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -17,138 +18,176 @@ const CameraApp = () => {
       }
     } catch (error) {
       console.error("Error accessing camera:", error);
-      alert("Unable to access the camera. Please check permissions.");
+      alert("Unable to access the camera. Please check your permissions.");
     }
   };
 
+  // Stop the camera
   const stopCamera = () => {
     if (videoRef.current && videoRef.current.srcObject) {
-      videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+      let tracks = videoRef.current.srcObject.getTracks();
+      tracks.forEach((track) => track.stop());
       videoRef.current.srcObject = null;
     }
 
+    // Clear the canvas
     if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext("2d");
-      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas content
     }
 
+    // Reset detection results
+    setDetectionResults(null);
+
     setIsCameraOn(false);
-    setDetectionResults([]);
   };
 
+  // Capture video frame and send to FastAPI for mask detection
   const captureAndDetectMask = async () => {
     if (videoRef.current) {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
+
+      // Draw the current video frame onto the canvas
       canvas.width = videoRef.current.videoWidth;
       canvas.height = videoRef.current.videoHeight;
       ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
+      // Convert canvas image to base64 format
       const imageUrl = canvas.toDataURL("image/jpeg");
 
       try {
-        const response = await axios.post("http://localhost:8000/detect-mask/", {
-          image: imageUrl,
-        });
+        // Send the base64 image to the FastAPI backend for mask detection
+        const response = await axios.post(
+          "http://localhost:8000/detect-mask/",
+          {
+            image: imageUrl, // Send the image as a base64 string
+          }
+        );
 
-        setDetectionResults(response.data.results || []);
+        console.log(response);
+
+        // Store the results (e.g., mask detection predictions)
+        setDetectionResults(response.data.results); // Set results from API response
       } catch (error) {
-        console.error("Error during detection:", error);
+        console.error("Error sending frame to backend:", error);
       }
     }
   };
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        try {
-          const response = await axios.post("http://localhost:8000/detect-mask/", {
-            image: reader.result,
-          });
+  // Periodically capture and send frames to backend
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isCameraOn) {
+        captureAndDetectMask();
+      }
+    }, 500); // Capture frame every 1 second
 
-          setDetectionResults(response.data.results || []);
-        } catch (error) {
-          console.error("Error during detection:", error);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [isCameraOn]);
 
+  // Function to draw the bounding box on the canvas based on the received coordinates
   const drawBoundingBoxes = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    if (!videoRef.current || !detectionResults.length) return;
-
-    canvas.width = videoRef.current.videoWidth;
-    canvas.height = videoRef.current.videoHeight;
+    // Clear previous drawings
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    detectionResults.forEach(({ label, box }) => {
-      const [startX, startY, endX, endY] = box;
-      const isMask = label.toLowerCase().includes("mask") && !label.toLowerCase().includes("no mask");
-      const color = isMask ? "green" : "red";
+    if (!videoRef.current) return;
 
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 2;
-      ctx.strokeRect(startX, startY, endX - startX, endY - startY);
+    // Match canvas dimensions to video
+    canvas.width = videoRef.current.videoWidth;
+    canvas.height = videoRef.current.videoHeight;
 
-      ctx.fillStyle = color;
-      ctx.font = "16px Arial";
-      ctx.fillText(label, startX, startY > 20 ? startY - 10 : startY + 20);
-    });
+    // Draw bounding boxes
+    if (detectionResults) {
+      detectionResults.forEach((result) => {
+        const [startX, startY, endX, endY] = result.box;
+        const isNormalized = startX <= 1 && startY <= 1 && endX <= 1 && endY <= 1;
+
+        let scaledStartX = startX;
+        let scaledStartY = startY;
+        let scaledWidth = endX - startX;
+        let scaledHeight = endY - startY;
+
+        if (isNormalized) {
+          // Scale normalized coordinates to actual pixel values
+          scaledStartX *= canvas.width;
+          scaledStartY *= canvas.height;
+          scaledWidth *= canvas.width;
+          scaledHeight *= canvas.height;
+        }
+
+        // Set colors based on detection label
+        const isWearingMask =
+          result.label.toLowerCase().includes("mask") &&
+          !result.label.toLowerCase().includes("no mask");
+        const strokeColor = isWearingMask ? "green" : "red";
+        const textColor = strokeColor;
+
+        // Draw rectangle
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = 3;
+        ctx.strokeRect(scaledStartX + 115, scaledStartY, scaledWidth, scaledHeight - 10);
+
+        // Add label
+        ctx.fillStyle = textColor;
+        ctx.font = "16px Arial";
+        ctx.fillText(
+          `${result.label}`,
+          scaledStartX,
+          scaledStartY > 10 ? scaledStartY - 10 : scaledStartY + 20
+        );
+      });
+    }
   };
 
+  // Update canvas whenever detection results change
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (isCameraOn) captureAndDetectMask();
-    }, 1000); // Capture every second
-    return () => clearInterval(interval);
-  }, [isCameraOn]);
-
-  useEffect(() => {
-    drawBoundingBoxes();
+    if (detectionResults) {
+      drawBoundingBoxes();
+    }
   }, [detectionResults]);
 
   return (
-    <div className="camera-container">
-      <div className="camera-main">
-        <div className="video-container">
-          <video ref={videoRef} autoPlay muted className="video" />
-          <canvas ref={canvasRef} className="canvas" />
+    <div>
+      <div className="camera-container">
+        <video ref={videoRef} autoPlay className="camera-video"></video>
+        <canvas
+          ref={canvasRef}
+          className="camera-canvas"
+          style={{
+            pointerEvents: "none", // Disable mouse interaction with the canvas
+            width: "100%",
+            height: "auto",
+          }}
+        ></canvas>
+        <div className="controls">
+          {!isCameraOn ? (
+            <button onClick={startCamera} className="btn-start">
+              Open Camera
+            </button>
+          ) : (
+            <button onClick={stopCamera} className="btn-stop">
+              Stop Camera
+            </button>
+          )}
         </div>
-
-        <div className="buttons-container">
-          <button
-            onClick={isCameraOn ? stopCamera : startCamera}
-            className={`button ${isCameraOn ? "button-red" : "button-green"}`}
-          >
-            {isCameraOn ? "Stop Camera" : "Start Camera"}
-          </button>
-          <label className="button button-blue">
-            Upload Image
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="hidden"
-            />
-          </label>
-        </div>
-
-        {detectionResults.length > 0 && (
-          <div className="detection-results">
+        {detectionResults && (
+          <div className="results">
             <h3>Detection Results:</h3>
-            {detectionResults.map(({ label, box }, index) => (
-              <div key={index} className="mb-2">
+            {detectionResults.map((result, index) => (
+              <div key={index} className="result-item">
                 <p>
-                  <strong>Label:</strong> {label}
+                  <strong>Label:</strong> {result.label}
                 </p>
                 <p>
-                  <strong>Bounding Box:</strong> {box.join(", ")}
+                  <strong>Confidence:</strong> {result.label.split(": ")[1]}
+                </p>
+                <p>
+                  <strong>Bounding Box:</strong> {result.box.join(", ")}
                 </p>
               </div>
             ))}
