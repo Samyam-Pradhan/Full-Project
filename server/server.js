@@ -4,6 +4,7 @@ const app = express();
 const router = require('./router/auth-router');
 const connectDb = require("./utils/db");
 const cors = require("cors");
+const adminRoute = require("./router/admin-router");
 
 //cors handling
 const corsOptions ={
@@ -11,6 +12,9 @@ const corsOptions ={
     methods : "GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials: true,
 }
+// admin route
+app.use("/api/admin", adminRoute);
+
 
 app.use(cors(corsOptions));
 
