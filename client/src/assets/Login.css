@@ -8,8 +8,8 @@
 }
 
 .login-page h1 {
-  margin-bottom: 1rem;
-  font-size: 2rem;
+  margin-bottom: 3rem;
+  font-size: 3rem;
   color: #4a90e2;
 }
 
@@ -32,7 +32,7 @@
   max-width: 100%;
   height: auto;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ 
 }
 
 .login-page .right-section {
@@ -52,7 +52,7 @@
 
 .login-page .label {
   display: block;
-  font-size: 0.9rem;
+  font-size: 2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #555;
@@ -64,12 +64,15 @@
 
 .login-page .input {
   width: 100%;
-  padding: 0.8rem;
-  font-size: 1rem;
+  padding: 1.1rem;
+  font-size: 1.7rem;
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
   transition: border 0.3s;
+}
+ ::placeholder{
+  font-family:'Courier New', Courier, monospace; ;
 }
 
 .login-page .input:focus {
@@ -82,12 +85,13 @@
   padding: 0.8rem;
   background: #4a90e2;
   color: #fff;
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: bold;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .login-page .submit-button:hover {
