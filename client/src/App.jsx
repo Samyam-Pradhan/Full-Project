@@ -4,6 +4,7 @@ import './App.css';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import ProtectedRoute from './components/ProtectRoute';
 
 const App = () => {
   return (
@@ -13,7 +14,14 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
       </Routes>
     </Router>
