@@ -1,0 +1,86 @@
+.admin-users-section {
+    background-color: #f4f7f6;
+    padding: 2rem 0;
+}
+
+.admin-users-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.admin-users-section h1 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    text-align: center;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+.admin-user table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.admin-user thead {
+    background-color: #3498db;
+    color: white;
+}
+
+.admin-user th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.admin-user tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.admin-user tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.admin-user tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.admin-user td {
+    padding: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #2d3748;
+}
+
+.admin-user button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-user button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .admin-user table {
+        font-size: 0.9rem;
+    }
+
+    .admin-user th, .admin-user td {
+        padding: 10px;
+    }
+}
