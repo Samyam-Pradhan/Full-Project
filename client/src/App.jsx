@@ -4,16 +4,18 @@ import './App.css';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import ProtectedRoute from './components/ProtectRoute';
+import { Logout } from './components/Logout'; // Import Logout component
+import  ProtectedRoute  from "./components/ProtectedRoute"; // Import ProtectedRoute
 
 const App = () => {
   return (
     <Router>
-      
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/" element={<HomePage />} /> {/* No protection on Home */}
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        
+        {/* Protect only the Dashboard route */}
         <Route
           path="/dashboard"
           element={
@@ -22,7 +24,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
+        
+        <Route path="/logout" element={<Logout />} /> {/* Redirects to / after logout */}
       </Routes>
     </Router>
   );
