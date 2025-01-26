@@ -24,7 +24,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <div className="logo">Your Logo</div>
+      <div className="logo">Welcome</div>
       <ul className="menu">
         <li style={{ display: "flex", alignItems: "center" }}>
           <MdDashboard style={{ marginRight: "8px" }} />
