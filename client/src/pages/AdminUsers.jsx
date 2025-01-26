@@ -42,26 +42,26 @@ const AdminUsers = () => {
             setError('Unable to retrieve users');
         }
     };
-    //delete the user on clicking delete button
-    const deleteUser = async (id) =>{
-        try{
-        const response =await fetch(`http://localhost:5000/api/admin/users/delete/${id}`, {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
-        });
-        const data = await response.json();
-        console.log(`users after DELETE: ${data}`);
 
-        if(response.ok){
-            getAllUsersData();
+    //delete the user on clicking delete button
+    const deleteUser = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/admin/users/delete/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            const data = await response.json();
+            console.log(`users after DELETE: ${data}`);
+
+            if (response.ok) {
+                getAllUsersData();
+            }
+        } catch (error) {
+            console.log(error);
         }
-    }catch(error){
-        console.log(error);
-        
-    }
-    }
+    };
 
     useEffect(() => {
         getAllUsersData();
@@ -82,7 +82,6 @@ const AdminUsers = () => {
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
@@ -97,12 +96,11 @@ const AdminUsers = () => {
                                 <tr key={curUser._id || index}>
                                     <td>{curUser.username}</td>
                                     <td>{curUser.email}</td>
-                                    
                                     <td>
-                                        <Link to={`/admin/users/${curUser.User_id}/edit`}>Edit</Link>
+                                        <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
                                     </td>
                                     <td>
-                                        <button onClick={()=> deleteUser(curUser._id)}>Delete</button>
+                                        <button onClick={() => deleteUser(curUser._id)}>Delete</button>
                                     </td>
                                 </tr>
                             ))
