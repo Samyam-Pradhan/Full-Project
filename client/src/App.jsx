@@ -8,6 +8,7 @@ import { Logout } from './components/Logout'; // Import Logout component
 import  ProtectedRoute  from "./components/ProtectedRoute"; // Import ProtectedRoute
 import AdminLayout from './components/layouts/AdminLayout';
 import AdminUsers from './pages/AdminUsers';
+import AdminUpdate from './pages/AdminUpdate';
 const App = () => {
   return (
     <Router>
@@ -29,6 +30,8 @@ const App = () => {
         <Route path="/logout" element={<Logout />} /> {/* Redirects to / after logout */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="users" element={<AdminUsers />} />
+          <Route path="users/:id/edit" element={<AdminUpdate />} />
+          
         </Route>
       </Routes>
     </Router>
