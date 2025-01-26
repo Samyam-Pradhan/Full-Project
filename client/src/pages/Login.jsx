@@ -1,7 +1,7 @@
 import { useState } from "react";
 import registerImage from "../images/facemask1.webp";
 import "../assets/login.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../store/auth";
 
 const Login = () => {
@@ -104,6 +104,11 @@ const Login = () => {
                                 <button type="submit" className="submit-button">
                                     Login
                                 </button>
+                                    <p className="register-link">
+                                    <Link to="/register" className="link">
+                                        Dont have an account?
+                                    </Link>
+                                </p>
                             </form>
                         </div>
                     </div>

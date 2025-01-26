@@ -98,6 +98,26 @@
   background: #357ab8;
 }
 
+.login-page .register-link {
+  margin-top: 1rem; 
+  text-align: left; 
+  font-size: 0.9rem;
+  color: #555; 
+}
+
+.login-page .register-link .link {
+  color: #007bff; 
+  text-decoration: none; 
+  transition: color 0.3s ease; 
+}
+
+.login-page .register-link .link:hover {
+  color: #0056b3; 
+  text-decoration: underline; 
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .login-page .grid-two-cols {
