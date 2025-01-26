@@ -15,5 +15,16 @@ const getAllUsers = async (req, res) => {
         return res.status(500).json({ msg: "Internal server error" });
     }
 };
+//delete user logic
+const deleteUserById = async(req,res) =>{
+    try {
+        const id = req.params.id;
+        await User.deleteOne({_id : id});
+        return res.status(200).json({message: "User Deleted Sucessfully"})
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
 
-module.exports = { getAllUsers};
+module.exports = { getAllUsers,deleteUserById };
