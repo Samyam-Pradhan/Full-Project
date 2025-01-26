@@ -29,13 +29,13 @@ const getUserById = async(req,res) =>{
 
 // user update logic
 
-const updateUserById = async() =>{
+const updateUserById = async(req, res) =>{
     try {
         const id = req.params.id;
         const UpdatedUserData = req.body;
 
 
-        const updatedUser = await User.updateOne({_id:id},
+        const updatedUser = await User.updateOne({_id: id},
             {
             $set: UpdatedUserData,
         }
