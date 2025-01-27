@@ -130,7 +130,7 @@ const CameraApp = () => {
         // Draw rectangle
         ctx.strokeStyle = strokeColor;
         ctx.lineWidth = 3;
-        ctx.strokeRect(scaledStartX + 115, scaledStartY, scaledWidth, scaledHeight - 10);
+        ctx.strokeRect(scaledStartX + 115, scaledStartY -50, scaledWidth, scaledHeight - 10);
 
         // Add label
         ctx.fillStyle = textColor;
