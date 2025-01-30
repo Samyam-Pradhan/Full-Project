@@ -1,10 +1,13 @@
-require('dotenv').config();
+
 const express = require("express");
 const app = express();
-const router = require('./router/auth-router');
 const connectDb = require("./utils/db");
 const cors = require("cors");
+
+// Import Routes
+const authRoute = require('./router/auth-router');
 const adminRoute = require("./router/admin-router");
+const userRoute = require("./router/user-router"); // ✅ Import user route
 
 // CORS handling
 const corsOptions = {
@@ -20,11 +23,12 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Define routes
-app.use("/api/auth", router);
+app.use("/api/auth", authRoute);
 app.use("/api/admin", adminRoute);
+app.use("/api", userRoute); //  Add user route
 
 // Start the server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 connectDb().then(() => {
     app.listen(PORT, () => {
