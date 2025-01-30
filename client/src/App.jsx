@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import { Logout } from './components/Logout'; // Import Logout component
+import Report from './pages/Report';
 import  ProtectedRoute  from "./components/ProtectedRoute"; // Import ProtectedRoute
 import AdminLayout from './components/layouts/AdminLayout';
 import AdminUsers from './pages/AdminUsers';
@@ -28,6 +29,7 @@ const App = () => {
         />
         
         <Route path="/logout" element={<Logout />} /> {/* Redirects to / after logout */}
+        <Route path="/report" element={<Report />} /> 
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="users" element={<AdminUsers />} />
           <Route path="users/:id/edit" element={<AdminUpdate />} />

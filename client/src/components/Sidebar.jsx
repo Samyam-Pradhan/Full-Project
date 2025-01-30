@@ -5,12 +5,12 @@ import { FcAbout } from "react-icons/fc";
 import { IoIosHelpCircle } from "react-icons/io";
 import { TbReportSearch, TbLogout } from "react-icons/tb";
 import { useAuth } from "../store/auth"; // Import AuthContext
-import { useNavigate } from "react-router-dom"; // Import navigation hook
+import { useNavigate, Link } from "react-router-dom"; // Import Link
 
 const Sidebar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const { LogoutUser } = useAuth(); // Access LogoutUser from AuthContext
-  const navigate = useNavigate(); // Initialize navigate
+  const { LogoutUser } = useAuth();
+  const navigate = useNavigate();
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -18,8 +18,8 @@ const Sidebar = () => {
   };
 
   const handleLogout = () => {
-    LogoutUser(); // Perform logout logic
-    navigate("/"); // Redirect to homepage
+    LogoutUser();
+    navigate("/");
   };
 
   return (
@@ -42,14 +42,15 @@ const Sidebar = () => {
           <IoIosHelpCircle style={{ marginRight: "8px" }} />
           Help
         </li>
+        {/* Link to Report.jsx */}
         <li style={{ display: "flex", alignItems: "center" }}>
           <TbReportSearch style={{ marginRight: "8px" }} />
-          Reports
+          <Link to="/report" style={{ textDecoration: "none", color: "inherit" }}>Reports</Link>
         </li>
         <hr />
         <li
           style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-          onClick={handleLogout} // Logout on click
+          onClick={handleLogout}
         >
           <TbLogout style={{ marginRight: "8px" }} />
           Logout
