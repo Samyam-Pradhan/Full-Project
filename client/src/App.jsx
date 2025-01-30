@@ -13,6 +13,7 @@ import AdminUpdate from './pages/AdminUpdate';
 import Account from './pages/Account';
 import About from './pages/About';
 import Help from "./pages/Help";
+import ChangePassword from './pages/ChangePassword';
 
 const App = () => {
   return (
@@ -35,10 +36,12 @@ const App = () => {
         <Route path="/logout" element={<Logout />} /> {/* Redirects to / after logout */}
         <Route path="/report" element={<Report />} /> 
         <Route path="/account" element={<Account />} /> 
+        <Route path="/users/:id/change-password" element={<ChangePassword />} />
         <Route path="/help" element={<Help />} /> 
         <Route path="/about" element={<About />} /> 
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="users" element={<AdminUsers />} />
+       
           <Route path="users/:id/edit" element={<AdminUpdate />} />
           
         </Route>
