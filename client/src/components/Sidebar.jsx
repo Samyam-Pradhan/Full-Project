@@ -36,11 +36,13 @@ const Sidebar = () => {
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
           <FcAbout style={{ marginRight: "8px" }} />
-          About
+          <Link to ="/about" style={{textDecoration: "none", color: "inherit"}}>About</Link>
+
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
           <IoIosHelpCircle style={{ marginRight: "8px" }} />
-          Help
+          <Link to ="/help" style={{textDecoration: "none", color: "inherit"}}>Help</Link>
+
         </li>
         
         <li style={{ display: "flex", alignItems: "center" }}>
