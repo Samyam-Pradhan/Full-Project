@@ -1,0 +1,161 @@
+/* Account Page Styles */
+.account-page {
+  text-align: center;
+  padding: 40px 20px; /* 40px 20px */
+  background-color: #ebf8ff;
+  min-height: 100vh;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.account-container {
+  max-width: 450px; /* 450px */
+  margin: 40px auto; /* 40px */
+  padding: 30px; /* 30px */
+  background: white;
+  border-radius: 15px; /* 15px */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 8px 16px */
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.account-container:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* 12px 24px */
+}
+
+.account-info {
+  text-align: center;
+  margin-bottom: 30px; /* 30px */
+}
+
+.profile-pic {
+  width: 120px; /* 120px */
+  height: 120px; /* 120px */
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px; /* 20px */
+  border: 4px solid #007bff; /* 4px */
+}
+
+h2 {
+  font-size: 24px; /* 24px */
+  color: #333;
+  margin-bottom: 10px; /* 10px */
+}
+
+p {
+  font-size: 16px; /* 16px */
+  color: #666;
+  margin: 5px 0; /* 5px 0 */
+}
+
+.account-actions {
+  margin-top: 20px; /* 20px */
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px; 
+  margin: 12px 0; 
+  border: none;
+  background: #007bff;
+  color: white;
+  font-size: 18px; 
+  font-weight: bold;
+  border-radius: 8px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+.btn:active {
+  background: #004085;
+}
+
+@media (max-width: 480px) {
+  .account-container {
+    padding: 20px; 
+    max-width: 90%; 
+  }
+
+  .profile-pic {
+    width: 100px; 
+    height: 100px; 
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px; 
+  }
+
+  .btn {
+    font-size: 16px; 
+    padding: 10px; 
+  }
+}
+
+.btn.danger {
+  background-color: #dc3545; /* Red for danger */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between the icon and the text */
+}
+
+.btn.danger:hover {
+  background-color: #c82333;
+}
+
+.profile-pic {
+  width: 120px; /* 120px */
+  height: 120px; /* 120px */
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.activity-history {
+  margin-top: 40px; 
+  background-color: #fff;
+  padding: 20px; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 4px 12px */
+  max-width: 800px; 
+  margin: 20px auto; 
+}
+
+.activity-history h3 {
+  color: #333;
+  font-size: 24px; 
+  margin-bottom: 10px; 
+}
+
+.activity-history ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.activity-history ul li {
+  font-size: 16px; 
+  color: #555;
+  margin-bottom: 8px; 
+  line-height: 1.6;
+}
+
+.activity-history ul li:before {
+  content: "•";
+  color: #007bff; 
+  margin-right: 8px; 
+  font-size: 20px; 
+}
+
+.activity-history ul li:hover {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  cursor: pointer;
+}

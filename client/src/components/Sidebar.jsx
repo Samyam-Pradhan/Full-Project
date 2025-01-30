@@ -32,7 +32,7 @@ const Sidebar = () => {
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
           <MdAccountCircle style={{ marginRight: "8px" }} />
-          Account
+          <Link to ="/account" style={{textDecoration: "none", color: "inherit"}}>Account</Link>
         </li>
         <li style={{ display: "flex", alignItems: "center" }}>
           <FcAbout style={{ marginRight: "8px" }} />
@@ -42,7 +42,7 @@ const Sidebar = () => {
           <IoIosHelpCircle style={{ marginRight: "8px" }} />
           Help
         </li>
-        {/* Link to Report.jsx */}
+        
         <li style={{ display: "flex", alignItems: "center" }}>
           <TbReportSearch style={{ marginRight: "8px" }} />
           <Link to="/report" style={{ textDecoration: "none", color: "inherit" }}>Reports</Link>

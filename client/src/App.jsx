@@ -10,6 +10,8 @@ import  ProtectedRoute  from "./components/ProtectedRoute"; // Import ProtectedR
 import AdminLayout from './components/layouts/AdminLayout';
 import AdminUsers from './pages/AdminUsers';
 import AdminUpdate from './pages/AdminUpdate';
+import Account from './pages/Account';
+
 const App = () => {
   return (
     <Router>
@@ -30,6 +32,7 @@ const App = () => {
         
         <Route path="/logout" element={<Logout />} /> {/* Redirects to / after logout */}
         <Route path="/report" element={<Report />} /> 
+        <Route path="/account" element={<Account />} /> 
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="users" element={<AdminUsers />} />
           <Route path="users/:id/edit" element={<AdminUpdate />} />
