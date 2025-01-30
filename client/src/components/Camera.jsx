@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
-import axios from "axios"; // Ensure axios is imported for making HTTP requests
+import axios from "axios";
 import "../assets/Camera.css";
 
 const CameraApp = () => {
   const videoRef = useRef(null);
-  const canvasRef = useRef(null); // Reference for the canvas
+  const canvasRef = useRef(null);
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [detectionResults, setDetectionResults] = useState(null);
+
+  const maskAudio = useRef(new Audio("mask alert.mp3")); // Reference to the audio file
 
   // Start the camera
   const startCamera = async () => {
@@ -30,109 +32,89 @@ const CameraApp = () => {
       videoRef.current.srcObject = null;
     }
 
-    // Clear the canvas
     if (canvasRef.current) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas content
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    // Reset detection results
     setDetectionResults(null);
-
     setIsCameraOn(false);
   };
 
-  // Capture video frame and send to FastAPI for mask detection
+  // Capture and detect mask
   const captureAndDetectMask = async () => {
     if (videoRef.current) {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
 
-      // Draw the current video frame onto the canvas
       canvas.width = videoRef.current.videoWidth;
       canvas.height = videoRef.current.videoHeight;
       ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
-      // Convert canvas image to base64 format
       const imageUrl = canvas.toDataURL("image/jpeg");
 
       try {
-        // Send the base64 image to the FastAPI backend for mask detection
-        const response = await axios.post(
-          "http://localhost:8000/detect-mask/",
-          {
-            image: imageUrl, // Send the image as a base64 string
-          }
-        );
+        const response = await axios.post("http://localhost:8000/detect-mask/", {
+          image: imageUrl,
+        });
 
-        console.log(response);
-
-        // Store the results (e.g., mask detection predictions)
-        setDetectionResults(response.data.results); // Set results from API response
+        setDetectionResults(response.data.results);
       } catch (error) {
         console.error("Error sending frame to backend:", error);
       }
     }
   };
 
-  // Periodically capture and send frames to backend
+  // Periodically capture and send frames
   useEffect(() => {
     const interval = setInterval(() => {
       if (isCameraOn) {
         captureAndDetectMask();
       }
-    }, 500); // Capture frame every 1 second
+    }, 500);
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    return () => clearInterval(interval);
   }, [isCameraOn]);
 
-  // Function to draw the bounding box on the canvas based on the received coordinates
+  // Draw bounding boxes and play audio alert for "No Mask"
   const drawBoundingBoxes = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    // Clear previous drawings
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (!videoRef.current) return;
 
-    // Match canvas dimensions to video
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
 
-    // Draw bounding boxes
     if (detectionResults) {
       detectionResults.forEach((result) => {
         const [startX, startY, endX, endY] = result.box;
-        const isNormalized = startX <= 1 && startY <= 1 && endX <= 1 && endY <= 1;
 
         let scaledStartX = startX;
         let scaledStartY = startY;
         let scaledWidth = endX - startX;
         let scaledHeight = endY - startY;
 
-        if (isNormalized) {
-          // Scale normalized coordinates to actual pixel values
+        if (scaledStartX <= 1 && scaledStartY <= 1 && endX <= 1 && endY <= 1) {
           scaledStartX *= canvas.width;
           scaledStartY *= canvas.height;
           scaledWidth *= canvas.width;
           scaledHeight *= canvas.height;
         }
 
-        // Set colors based on detection label
         const isWearingMask =
           result.label.toLowerCase().includes("mask") &&
           !result.label.toLowerCase().includes("no mask");
         const strokeColor = isWearingMask ? "green" : "red";
         const textColor = strokeColor;
 
-        // Draw rectangle
         ctx.strokeStyle = strokeColor;
         ctx.lineWidth = 3;
-        ctx.strokeRect(scaledStartX + 115, scaledStartY -50, scaledWidth, scaledHeight - 10);
+        ctx.strokeRect(scaledStartX + 115, scaledStartY - 50, scaledWidth, scaledHeight - 10);
 
-        // Add label
         ctx.fillStyle = textColor;
         ctx.font = "16px Arial";
         ctx.fillText(
@@ -140,11 +122,15 @@ const CameraApp = () => {
           scaledStartX,
           scaledStartY > 10 ? scaledStartY - 10 : scaledStartY + 20
         );
+
+        // Play audio alert if no mask detected
+        if (!isWearingMask) {
+          maskAudio.current.play(); // Play the audio alert
+        }
       });
     }
   };
 
-  // Update canvas whenever detection results change
   useEffect(() => {
     if (detectionResults) {
       drawBoundingBoxes();
@@ -159,7 +145,7 @@ const CameraApp = () => {
           ref={canvasRef}
           className="camera-canvas"
           style={{
-            pointerEvents: "none", // Disable mouse interaction with the canvas
+            pointerEvents: "none",
             width: "100%",
             height: "auto",
           }}
