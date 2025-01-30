@@ -63,4 +63,5 @@ try {
   res.status(400).json({msg:"page not found"});
 }
 }
+
 module.exports =  {home,register,login};
