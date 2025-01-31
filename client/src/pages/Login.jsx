@@ -34,16 +34,20 @@ const Login = () => {
             });
 
             if (response.ok) {
-                alert("Login sucessful");
+                // alert("Login sucessful");
                 const res_data = await response.json();
-               
                 //stored the token in local host
                 storeTokenInLS(res_data.token);
+                console.log(res_data)
                
                 
                 setUser({ email: "", password: "" });
-                
-                navigate("/dashboard");
+
+                if (res_data.isAdmin) {
+                    navigate("/admin");
+                }else {
+                    navigate("/dashboard");
+                }
             } else {
                 alert("Invalid credentials");
                 console.log("Invalid credentials");
