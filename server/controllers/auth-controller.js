@@ -48,10 +48,10 @@ try {
 
     const user = await bcrypt.compare(password, userExist.password);
 /*     const user = await userExist.comparePassword(password); */
-
     if(user){
       res.status(200).json({message: "Login sucessfull", token: await userExist.generateToken(), 
         userId: userExist._id.toString(),
+        isAdmin: userExist.isAdmin
       });
     }
     else{
