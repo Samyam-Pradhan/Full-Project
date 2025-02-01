@@ -34,7 +34,7 @@ const Login = () => {
             });
 
             if (response.ok) {
-                // alert("Login sucessful");
+                alert("Login sucessful");
                 const res_data = await response.json();
                 //stored the token in local host
                 storeTokenInLS(res_data.token);

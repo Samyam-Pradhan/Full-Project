@@ -45,7 +45,7 @@ button {
   cursor: pointer;
   font-size: 1.4rem;
   transition: background-color 0.3s;
-  font-family: 'Courier New', Courier, monospace;
+  font-family:  'Tahoma', sans-serif;
 }
 
 button:hover {

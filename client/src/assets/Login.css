@@ -1,6 +1,6 @@
 /* Styles specific to the login page */
 .login-page {
-  font-family: 'Courier New', Courier, monospace;
+  font-family:  'Tahoma', sans-serif;
   background-color: #f4f4f9;
   color: #333;
   min-height: 100vh;
@@ -72,7 +72,7 @@
   transition: border 0.3s;
 }
  ::placeholder{
-  font-family:'Courier New', Courier, monospace; ;
+  font-family:  'Tahoma', sans-serif;
 }
 
 .login-page .input:focus {
@@ -91,7 +91,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s;
-  font-family: 'Courier New', Courier, monospace;
+  font-family:  'Tahoma', sans-serif;
 }
 
 .login-page .submit-button:hover {
